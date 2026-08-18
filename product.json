@@ -2,6 +2,8 @@
   "name": "WhatsApp Number Checker API",
   "brand": "WA Lookup",
   "repository": "walookup/whatsapp-number-checker-api",
+  "description": "Synchronous single and batch WhatsApp registration checks for E.164 phone numbers.",
+  "official_site": "https://walookup.com",
   "landing_page": "https://walookup.com/products/ws",
   "canonical_docs": "https://walookup.com/api-docs",
   "base_url": "https://walookup.com",
@@ -29,5 +31,7 @@
     }
   ],
   "pricing_url": "https://walookup.com/pricing",
-  "last_reviewed": "2026-08-17"
+  "maintainer": "WA Lookup",
+  "license": "MIT",
+  "last_reviewed": "2026-08-18"
 }

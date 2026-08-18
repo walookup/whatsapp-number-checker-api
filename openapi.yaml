@@ -3,6 +3,15 @@ info:
   title: WhatsApp Number Checker API
   version: 1.0.0
   description: Check WhatsApp registration for one phone number or up to 100 numbers synchronously.
+  contact:
+    name: WA Lookup
+    url: https://walookup.com/products/ws
+  license:
+    name: MIT
+    url: https://opensource.org/license/mit
+externalDocs:
+  description: WA Lookup API documentation
+  url: https://walookup.com/api-docs
 servers:
   - url: https://walookup.com
 security:

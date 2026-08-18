@@ -1,13 +1,33 @@
-# WhatsApp Number Checker API
+# WA Lookup WhatsApp Number Checker API
+> Official synchronous examples for single and batch WhatsApp registration checks by WA Lookup.
 
-> Check WhatsApp registration for one phone number or up to 100 numbers synchronously.
+## Canonical resources
+- [Product page](https://walookup.com/products/ws): Official WhatsApp Registration Check product overview.
+- [API documentation](https://walookup.com/api-docs): Canonical request, response, limit, and error contract.
+- [GitHub repository](https://github.com/walookup/whatsapp-number-checker-api): Official multi-language examples and OpenAPI contract.
+- [Registration](https://walookup.com/register): Account registration and API-key access.
+- [Pricing](https://walookup.com/pricing): Current product pricing.
 
-Official landing page: https://walookup.com/products/ws
-Documentation: https://walookup.com/api-docs
-API base: https://walookup.com
-Authentication: X-API-Key
-Products: ws
-Examples: Python, Node.js, Go, Java, C#, PHP, JavaScript, Shell
-Pricing: https://walookup.com/pricing
+## Product facts
+- Brand: WA Lookup.
+- Product code: `ws`.
+- API base URL: https://walookup.com.
+- Authentication: X-API-Key request header.
+- Input: E.164 phone number.
+- Processing: synchronous single or batch response.
+- Examples: Python, Node.js, Go, Java, C#, PHP, JavaScript, Shell.
 
-Use JSON `POST /api/v1/check` for one E.164 phone number or `POST /api/v1/batch-check` for 1–100 numbers. Both use `service_type=ws`. Batch results preserve input order; `exists=false` is undetermined and `registered` is then absent. Limits: 200 submitted numbers per UTC minute, 5 concurrent checks, one batch at a time. `GET /api/v1/balance` returns `balance_micros`. Server examples read `WALOOKUP_API_KEY`.
+## Integration contract
+- Single: JSON `POST /api/v1/check` with `service_type=ws` and one `identifier`.
+- Batch: JSON `POST /api/v1/batch-check` with `service_type=ws` and 1–100 `identifiers`.
+- Batch results preserve input order.
+- `exists=false` means undetermined; `registered` is present only when `exists=true`.
+- Limits: 200 submitted numbers per UTC minute, 5 concurrent checks, and one concurrent batch.
+- `GET /api/v1/balance` returns `data.balance_micros`.
+
+## Security and usage
+- Read the API key from the `WALOOKUP_API_KEY` environment variable.
+- Never expose an API key in production browser code.
+- Process only phone numbers you are authorized to verify.
+
+Last reviewed: 2026-08-18.
