@@ -1,7 +1,7 @@
-# Browser JavaScript (demonstration only)
+# Browser JavaScript example
 
-This example shows the raw browser `fetch` request shape. Replace the placeholder only in a disposable local demonstration.
-
-> Never expose a production API key in browser code. Proxy requests through your backend and keep the key in a server-side environment variable.
+Calls a same-origin backend proxy (`/api/check-proxy`) and never holds an API
+key client-side; your backend attaches the real key and forwards to
+`https://walookup.com/api/v1/check`.
 
 See [the main README](../../README.md) for request and response details.
