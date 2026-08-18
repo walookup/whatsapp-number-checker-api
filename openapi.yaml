@@ -1,0 +1,124 @@
+openapi: 3.0.3
+info:
+  title: WhatsApp Number Checker API
+  version: 1.0.0
+  description: Check WhatsApp registration for one phone number or up to 100 numbers synchronously.
+servers:
+  - url: https://walookup.com
+security:
+  - ApiKeyAuth: []
+paths:
+  /api/v1/check:
+    post:
+      summary: Check one identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [service_type, identifier]
+              properties:
+                service_type: { type: string, enum: [ws] }
+                identifier: { type: string }
+      responses:
+        '200':
+          description: Determined result
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SingleEnvelope' }
+        '400': { description: Invalid input }
+        '401': { description: Invalid API key }
+        '402': { description: Insufficient balance }
+        '422': { description: Undetermined and not charged; business code 42200 }
+        '429': { description: Rate or concurrency limited; business code 42900 or 42901 }
+        '503': { description: Validation service maintenance }
+  /api/v1/batch-check:
+    post:
+      summary: Check 1 to 100 phone numbers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [service_type, identifiers]
+              properties:
+                service_type: { type: string, enum: [ws] }
+                identifiers:
+                  type: array
+                  minItems: 1
+                  maxItems: 100
+                  items: { type: string }
+      responses:
+        '200':
+          description: Ordered batch result
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BatchEnvelope' }
+        '400': { description: Invalid request }
+        '401': { description: Invalid API key }
+        '402': { description: Insufficient balance }
+        '429': { description: Rate or concurrency limited }
+  /api/v1/balance:
+    get:
+      summary: Read account balance in micros
+      responses:
+        '200':
+          description: Current balance in micros
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BalanceEnvelope' }
+        '401': { description: Invalid API key }
+components:
+  securitySchemes:
+    ApiKeyAuth: { type: apiKey, in: header, name: X-API-Key }
+  schemas:
+    BalanceEnvelope:
+      type: object
+      required: [code, msg, data]
+      properties:
+        code: { type: integer, enum: [0] }
+        msg: { type: string, example: ok }
+        data:
+          type: object
+          required: [balance_micros]
+          properties:
+            balance_micros: { type: integer, format: int64 }
+    CheckResult:
+      type: object
+      required: [service_type, identifier, registered]
+      properties:
+        service_type: { type: string, enum: [ws] }
+        identifier: { type: string, example: '+14155550100' }
+        registered: { type: boolean }
+    SingleEnvelope:
+      type: object
+      required: [code, msg, data]
+      properties:
+        code: { type: integer, enum: [0] }
+        msg: { type: string, example: ok }
+        data: { $ref: '#/components/schemas/CheckResult' }
+    BatchItem:
+      type: object
+      required: [identifier, exists]
+      properties:
+        identifier: { type: string }
+        exists: { type: boolean }
+        registered: { type: boolean, description: Present only when exists is true }
+    BatchData:
+      type: object
+      required: [service_type, total, succeeded, failed, results]
+      properties:
+        service_type: { type: string, enum: [ws] }
+        total: { type: integer }
+        succeeded: { type: integer }
+        failed: { type: integer }
+        results: { type: array, items: { $ref: '#/components/schemas/BatchItem' } }
+    BatchEnvelope:
+      type: object
+      required: [code, msg, data]
+      properties:
+        code: { type: integer, enum: [0] }
+        msg: { type: string, example: ok }
+        data: { $ref: '#/components/schemas/BatchData' }

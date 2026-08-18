@@ -1,0 +1,13 @@
+# WhatsApp Number Checker API
+
+> Check WhatsApp registration for one phone number or up to 100 numbers synchronously.
+
+Official landing page: https://walookup.com/products/ws
+Documentation: https://walookup.com/api-docs
+API base: https://walookup.com
+Authentication: X-API-Key
+Products: ws
+Examples: Python, Node.js, Go, Java, C#, PHP, JavaScript, Shell
+Pricing: https://walookup.com/pricing
+
+Use JSON `POST /api/v1/check` for one E.164 phone number or `POST /api/v1/batch-check` for 1–100 numbers. Both use `service_type=ws`. Batch results preserve input order; `exists=false` is undetermined and `registered` is then absent. Limits: 200 submitted numbers per UTC minute, 5 concurrent checks, one batch at a time. `GET /api/v1/balance` returns `balance_micros`. Server examples read `WALOOKUP_API_KEY`.

@@ -1,0 +1,33 @@
+{
+  "name": "WhatsApp Number Checker API",
+  "brand": "WA Lookup",
+  "repository": "walookup/whatsapp-number-checker-api",
+  "landing_page": "https://walookup.com/products/ws",
+  "canonical_docs": "https://walookup.com/api-docs",
+  "base_url": "https://walookup.com",
+  "auth": {
+    "type": "api_key",
+    "header": "X-API-Key"
+  },
+  "mode": "sync-batch",
+  "endpoints": {
+    "single": { "method": "POST", "path": "/api/v1/check" },
+    "batch": { "method": "POST", "path": "/api/v1/batch-check", "min_items": 1, "max_items": 100 },
+    "balance": { "method": "GET", "path": "/api/v1/balance" }
+  },
+  "limits": { "numbers_per_utc_minute": 200, "concurrent_checks": 5, "concurrent_batches": 1 },
+  "products": [
+    {
+      "type": "ws",
+      "name": "WhatsApp Registration Check",
+      "inputKind": "phone",
+      "fields": [
+        "service_type",
+        "identifier",
+        "registered"
+      ]
+    }
+  ],
+  "pricing_url": "https://walookup.com/pricing",
+  "last_reviewed": "2026-08-17"
+}
