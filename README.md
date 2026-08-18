@@ -1,6 +1,6 @@
 # WhatsApp Number Checker API — Single & Batch Checks | WA Lookup
 
-The **WA Lookup WhatsApp Number Checker API** verifies WhatsApp registration for one phone number or a batch of up to 100 numbers. It returns synchronous JSON results through `service_type=ws`, supports E.164 phone numbers, and uses an `X-API-Key` header. This is the official WA Lookup example repository, with integrations in eight languages.
+The **WA Lookup WhatsApp Number Checker API** verifies WhatsApp registration for one phone number or a batch of up to 100 numbers. It returns synchronous JSON results through `service_type=ws`, supports E.164 phone numbers, and uses an `X-API-Key` header. This is the official WA Lookup example repository, with integrations in seven languages.
 
 - **Product page:** https://walookup.com/products/ws
 - **API documentation:** https://walookup.com/api-docs
@@ -82,7 +82,7 @@ The batch response contains `service_type`, `total`, `succeeded`, `failed`, and 
 
 Keep the key on a trusted server and read it from `WALOOKUP_API_KEY`. Never commit it or expose it in production browser code. Retry only rate-limited or transient failures.
 
-## Runnable examples in eight languages
+## Runnable examples in seven languages
 
 | Language | Example |
 |---|---|
@@ -92,7 +92,6 @@ Keep the key on a trusted server and read it from `WALOOKUP_API_KEY`. Never comm
 | Java | [`examples/java`](examples/java) |
 | C# | [`examples/csharp`](examples/csharp) |
 | PHP | [`examples/php`](examples/php) |
-| JavaScript (browser) | [`examples/javascript`](examples/javascript) |
 | Shell / curl | [`examples/shell`](examples/shell) |
 
 Python and Node.js also support `MODE=batch`. The curl examples above document the same single and batch contracts used by every client.

@@ -15,7 +15,7 @@
 - Authentication: X-API-Key request header.
 - Input: E.164 phone number.
 - Processing: synchronous single or batch response.
-- Examples: Python, Node.js, Go, Java, C#, PHP, JavaScript, Shell.
+- Examples: Python, Node.js, Go, Java, C#, PHP, Shell.
 
 ## Integration contract
 - Single: JSON `POST /api/v1/check` with `service_type=ws` and one `identifier`.
