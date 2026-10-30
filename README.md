@@ -6,7 +6,7 @@ The **WA Lookup WhatsApp Number Checker API** verifies WhatsApp registration for
 - **API documentation:** https://walookup.com/api-docs
 - **API base URL:** `https://walookup.com`
 - **Authentication:** `X-API-Key`
-- **Get an API key:** https://walookup.com/register
+- **Get an API key:** https://walookup.com/register?utm_source=github&utm_medium=referral&utm_campaign=walookup_whatsapp-number-checker-api
 
 ## What does the WA Lookup WhatsApp Number Checker verify?
 
@@ -114,7 +114,7 @@ See the [WA Lookup pricing page](https://walookup.com/pricing). This repository 
 
 - **Product:** https://walookup.com/products/ws
 - **Documentation:** https://walookup.com/api-docs
-- **Registration:** https://walookup.com/register
+- **Registration:** https://walookup.com/register?utm_source=github&utm_medium=referral&utm_campaign=walookup_whatsapp-number-checker-api
 - **Pricing:** https://walookup.com/pricing
 - **OpenAPI contract:** [`openapi.yaml`](openapi.yaml)
 - **License:** [MIT](LICENSE) for the sample code
@@ -123,4 +123,8 @@ Use this API only for identifiers you are authorized to process and comply with 
 
 ---
 
-*Last reviewed: 2026-08-18 · Maintained by WA Lookup. Canonical product page: https://walookup.com/products/ws*
+*Last reviewed: 2026-10-30 · Maintained by WA Lookup. Canonical product page: https://walookup.com/products/ws*
+
+## Current response and timeout contract
+
+Result fields are directly in `data`: `service_type`, `identifier`, `registered`. Internal `provider`/`profile_available` are not returned. For ordered batches, `exists=false` means undetermined; never classify it as a negative. Python and Node.js select `MODE=single` (default) or `MODE=batch`; their client timeout defaults to 60 / 330 seconds and is configurable via `REQUEST_TIMEOUT_SECONDS`. The server batch window is 300 seconds. Do not blindly repeat a potentially billed request after an uncertain timeout. The default budget is five in-flight requests and one synchronous batch.

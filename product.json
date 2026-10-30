@@ -13,11 +13,26 @@
   },
   "mode": "sync-batch",
   "endpoints": {
-    "single": { "method": "POST", "path": "/api/v1/check" },
-    "batch": { "method": "POST", "path": "/api/v1/batch-check", "min_items": 1, "max_items": 100 },
-    "balance": { "method": "GET", "path": "/api/v1/balance" }
+    "single": {
+      "method": "POST",
+      "path": "/api/v1/check"
+    },
+    "batch": {
+      "method": "POST",
+      "path": "/api/v1/batch-check",
+      "min_items": 1,
+      "max_items": 100
+    },
+    "balance": {
+      "method": "GET",
+      "path": "/api/v1/balance"
+    }
   },
-  "limits": { "numbers_per_utc_minute": 200, "concurrent_checks": 5, "concurrent_batches": 1 },
+  "limits": {
+    "requests_in_flight": 5,
+    "concurrent_batches": 1,
+    "batch_timeout_seconds": 300
+  },
   "products": [
     {
       "type": "ws",
@@ -33,5 +48,5 @@
   "pricing_url": "https://walookup.com/pricing",
   "maintainer": "WA Lookup",
   "license": "MIT",
-  "last_reviewed": "2026-08-18"
+  "last_reviewed": "2026-10-30"
 }

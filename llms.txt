@@ -5,7 +5,7 @@
 - [Product page](https://walookup.com/products/ws): Official WhatsApp Registration Check product overview.
 - [API documentation](https://walookup.com/api-docs): Canonical request, response, limit, and error contract.
 - [GitHub repository](https://github.com/walookup/whatsapp-number-checker-api): Official multi-language examples and OpenAPI contract.
-- [Registration](https://walookup.com/register): Account registration and API-key access.
+- [Registration](https://walookup.com/register?utm_source=github&utm_medium=referral&utm_campaign=walookup_whatsapp-number-checker-api): Account registration and API-key access.
 - [Pricing](https://walookup.com/pricing): Current product pricing.
 
 ## Product facts
@@ -30,4 +30,8 @@
 - Never expose an API key in production browser code.
 - Process only phone numbers you are authorized to verify.
 
-Last reviewed: 2026-08-18.
+Last reviewed: 2026-10-30.
+
+## Current response and timeout contract
+
+Result fields are directly in `data`: `service_type`, `identifier`, `registered`. Internal `provider`/`profile_available` are not returned. For ordered batches, `exists=false` means undetermined; never classify it as a negative. Python and Node.js select `MODE=single` (default) or `MODE=batch`; their client timeout defaults to 60 / 330 seconds and is configurable via `REQUEST_TIMEOUT_SECONDS`. The server batch window is 300 seconds. Do not blindly repeat a potentially billed request after an uncertain timeout. The default budget is five in-flight requests and one synchronous batch.
